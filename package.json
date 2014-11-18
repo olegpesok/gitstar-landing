@@ -1,0 +1,17 @@
+{
+  "name": "gitstar-landing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gitstar Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.10.2"
+  },
+  "devDependencies": {
+    "debug": "^2.1.0"
+  }
+}
