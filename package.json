@@ -9,6 +9,7 @@
   "author": "Gitstar Inc.",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.9.2",
     "express": "^4.10.2"
   },
   "devDependencies": {

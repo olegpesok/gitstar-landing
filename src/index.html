@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link href="styles.css" rel="stylesheet">
   </head>
@@ -20,11 +21,14 @@
         <div class="cover-container">
 
           <div class="inner cover">
-            <img class="cover-heading" src="full_logo.png" alt="Gitstar Inc." height="50%" width="50%" /> <br /> <br />
+            <img class="cover-heading" src="full_logo.png" alt="Gitstar Inc." height="50%" width="50%" />
+            <br /> <br />
             <p class="lead">Some stuff explaining Gitstar.</p>
-            <p class="lead">
-              <a href="mailto:info@gitstar.com" class="btn btn-lg btn-default">Learn more</a>
-            </p>
+            <form id="emailForm" action="" class="lead">
+              <input type="text" name="email" id="emailField" placeholder="email@domain.com" style="color:black">
+              <br /><br />
+              <input type="submit" name="submit" id="submitButton" value="Learn more" class="btn btn-lg btn-default" disabled="disabled">
+            </form>
           </div>
 
           <div class="mastfoot">
@@ -38,5 +42,26 @@
       </div>
 
     </div>
+    <script>
+        $("#emailField").keyup(function () {
+            console.log('BRO');
+            var empty = !($("#emailField").val());
+            if (empty) {
+                $('#submitButton').attr('disabled', 'disabled');
+            } else {
+                $('#submitButton').removeAttr('disabled');
+            }
+        });
+
+        $("#emailForm").submit(function (event) {
+            $.ajax({
+                url: "/submit",
+                type: "POST",
+                data: "email=" + $("#emailField").val()
+            });
+            $("#emailForm").hide();
+            event.preventDefault();
+        });
+    </script>
   </body>
 </html>
