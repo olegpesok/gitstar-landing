@@ -21,7 +21,6 @@ var User = bookshelf.Model.extend({
   hasTimestamps: true
 });
 
-
 var app  = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
