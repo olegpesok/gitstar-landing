@@ -1,0 +1,4 @@
+# Install
+
+1. Create DB: `cat mkdb.sql | sqlite3 db.sqlite`
+2. Copy SSL key and cert to `cwd`

@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gitstar Inc.",
+  "author": "Gitstar, Inc.",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.9.2",
-    "express": "^4.10.2"
+    "body-parser": "^1.9.3",
+    "bookshelf": "^0.7.9",
+    "express": "^4.10.2",
+    "knex": "^0.7.3",
+    "sqlite3": "^3.0.4",
+    "validator": "^3.22.1"
   },
-  "devDependencies": {
-    "debug": "^2.1.0"
-  }
+  "devDependencies": {}
 }

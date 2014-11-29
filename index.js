@@ -1,40 +1,45 @@
-var express = require('express');
-require('debug')('gitstar-landing');
-var util = require('util');
-var fs = require('fs');
+var express      = require('express');
+var bodyParser   = require('body-parser');
+var validator    = require('validator');
+var https        = require('https');
+var http         = require('http');
+var fs           = require('fs');
 
-var PORT = 8081;
-var app = express();
+var sslOpts = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/src'));
-
-app.listen(PORT);
-
-app.post('/submit', function(req, res, next) {
-    if (req.body.email && req.body.email.trim()) {
-        fs.open('emails.txt', 'a', function (err, fd) {
-            if (err) {
-                // We don't want to quit (still want to serve up text)
-                console.log(err.message);
-            }
-
-            fs.write(
-                fd,
-                new Buffer(req.body.email + '\n'),
-                0,
-                req.body.email.length + 1,
-                null,
-                function (err) {
-                    if (err) {
-                        // We don't want to quit (still want to serve up text)
-                        console.log(err.message);
-                    }
-                });
-        });
-    }
-
-    res.status(200).json(req.body);
-    next();
+var knex = require('knex')({
+  client: 'sqlite3',
+  connection: { filename: './db.sqlite' }
 });
+var bookshelf = require('bookshelf')(knex);
+
+var User = bookshelf.Model.extend({
+  tableName: 'users',
+  hasTimestamps: true
+});
+
+
+var app  = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/sign-up', function(req, res) {
+  var email = req.body.email;
+  if (validator.isEmail(email)) {
+    new User({email:req.body.email}).save().then(function (model) {
+      res.status('200').json(req.body.email);
+    }).catch(function (err) {
+      console.error(err);
+      res.status('500').json('Failed to save address');
+    });
+  } else {
+    res.status('400').json('Invalid email address');
+  }
+});
+
+app.use(express.static(__dirname + '/public'));
+http.createServer(app).listen(3000);
+https.createServer(sslOpts, app).listen(3443);

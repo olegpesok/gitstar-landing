@@ -32,7 +32,13 @@ body {
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  font-family: "Roboto";
+  font-size: 10pt;
+  font-style: normal;
+}
+
+.popover {
+  color: #000;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -76,7 +82,6 @@ body {
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
-  font-size: 16px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
   color: rgba(255,255,255,.75);
@@ -110,11 +115,17 @@ body {
  */
 
 .cover {
-  padding: 0 20px;
+  padding: 0 10px;
 }
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
+}
+.lead {
+  padding: 10px;
+}
+.btn-lead {
+  margin-top:  5px;
 }
 
 
