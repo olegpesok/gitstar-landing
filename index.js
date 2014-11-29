@@ -40,5 +40,5 @@ app.post('/sign-up', function(req, res) {
 });
 
 app.use(express.static(__dirname + '/public'));
-http.createServer(app).listen(3000,'127.0.0.1');
-https.createServer(sslOpts, app).listen(3443,'127.0.0.1');
+http.createServer(app).listen(3000, '127.0.0.1');
+https.createServer(sslOpts, app).listen(3443, '127.0.0.1');
