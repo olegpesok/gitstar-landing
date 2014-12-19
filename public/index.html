@@ -32,6 +32,7 @@
                  <div class="input-group">
                    <div class="input-group-addon">@</div>
                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                   <input type="hidden" id="csrf" name="_csrf" value="{{ csrfToken }}">
                  </div>
                  <button type="submit" class="btn-lead btn btn-block btn-primary" name="submit" id="submit">Sign up</button>
                </div>

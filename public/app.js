@@ -16,7 +16,7 @@ $('#emailForm').submit(function (event) {
   $.ajax({
     url: '/sign-up',
     type: 'POST',
-    data: 'email=' + $('#email').val()
+    data: 'email=' + $('#email').val() + '&_csrf=' + $('#csrf').val()
   }).done(function (data) {
     formInfo('Thanks! We\'ll keep you posted.');
   }).fail(function (xhr) {
